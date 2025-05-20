@@ -1,0 +1,81 @@
+ 
+-- Banco Hotel
+
+-- CREATE DATABASE dbHotelaria;
+-- USE dbHotelaria;
+ 
+CREATE TABLE permissao(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(244) NOT NULL
+);
+ 
+CREATE TABLE usuarios(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(244) NOT NULL,
+email VARCHAR(244) UNIQUE NOT NULL,
+senha VARCHAR(244) NOT NULL,
+id_perm_fk INT,
+
+FOREIGN KEY (id_perm_fk) REFERENCES permissao(id)
+
+);
+ 
+CREATE TABLE adicionais(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(244) NOT NULL,
+preco DOUBLE (10, 2) NOT NULL
+
+);
+ 
+CREATE TABLE clientes(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(244) NOT NULL,
+email VARCHAR(244) UNIQUE NOT NULL,
+cpf VARCHAR(244) NOT NULL,
+telefone VARCHAR(244) NOT NULL
+);
+ 
+CREATE TABLE imagens(
+id INT PRIMARY KEY AUTO_INCREMENT,
+caminho VARCHAR(244) NOT NULL
+);
+ 
+CREATE TABLE quartos(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(244) NOT NULL,
+numero VARCHAR(244) NOT NULL,
+tipo VARCHAR(244) NOT NULL,
+camaSolteiro VARCHAR(244) NOT NULL,
+camaCasal VARCHAR(244) NOT NULL,
+disponível BOOLEAN NOT NULL,
+preco DECIMAL (10,2) NOT NULL,
+id_imagem_fk INT,
+
+FOREIGN KEY (id_imagem_fk) REFERENCES imagens(id)
+);
+ 
+CREATE TABLE pedidos(
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_usuario_fk INT,
+id_cliente_fk INT,
+data DATE,
+pagamento ENUM ('Debito', 'Credito', 'Pix') NOT NULL,
+
+FOREIGN KEY (id_usuario_fk) REFERENCES usuarios(id),
+FOREIGN KEY (id_cliente_fk) REFERENCES clientes(id)
+);
+ 
+ 
+CREATE TABLE reservas(
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_adicional_fk INT,
+id_quarto_fk INT,
+id_pedido_fk INT,
+dataInicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+dataFim TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+FOREIGN KEY(id_adicional_fk) REFERENCES adicionais(id),
+FOREIGN KEY(id_quarto_fk) REFERENCES quartos(id),
+FOREIGN KEY(id_pedido_fk) REFERENCES pedidos(id)
+
+);

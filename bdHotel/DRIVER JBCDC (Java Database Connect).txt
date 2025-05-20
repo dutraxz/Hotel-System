@@ -1,0 +1,17 @@
+DRIVER JBCDC (Java Database Connectivy)
+
+- 5 parâmetros que definem a conexão:
+
+
+- URL do drive: com.mysql.cj.jdbc.Driver
+
+- IP (endereço eletrônico): 127.0.0.1
+
+- Porta: 3306
+
+- Nome do banco de dados: dbaHotelaria
+(NESSE CAMPO, COLOCAR O NOME DO SEU BANCO)
+
+-Nome de usuário: dbaHotel
+
+-Senha: dbaHotel123
