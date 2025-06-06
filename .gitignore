@@ -1,7 +1,10 @@
 ### IntelliJ IDEA ###
+### .gitignore permite que diretórios e aruivos sejam
+###ignorados ao realizar o VERSIONAMETNO LOCAL  E REMOTO
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+src/view/resources/config.properties
 
 ### Eclipse ###
 .apt_generated
