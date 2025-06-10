@@ -22,6 +22,7 @@ public class ClientesDao {
             novoCliente.setString(4, "(15) 99000-1111");
 
             int linhaAfetada = novoCliente.executeUpdate();
+            condb.close();
             return linhaAfetada > 0;
         }
         catch (Exception erro) {
@@ -29,4 +30,22 @@ public class ClientesDao {
             return false;
         }
     }
+    public boolean deleteCliente    () {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement removerClientes = condb.prepareStatement
+                    ("DELETE adicionais WHERE id = ?; ");
+
+            removerClientes.setInt(1, 1);
+
+            int linhaAfetada = removerClientes.executeUpdate();
+            condb.close();
+            return linhaAfetada > 0;
+        }
+        catch (Exception erro) {
+            System.out.println("Erro ao deletar Cliente!" + erro);
+            return false;
+        }
+    }
 }
+

@@ -23,11 +23,29 @@ public class QuartosDao {
             novoQuarto.setDouble(6, 300.00);
 
             int linhaAfetada = novoQuarto.executeUpdate();
+            condb.close();
             return linhaAfetada > 0;
         }
             catch (Exception erro){
                 System.out.println("Erro ao inserir quartos" + erro);
                 return false;
+        }
+    }
+    public boolean deleteQuarto() {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement removerQuarto = condb.prepareStatement
+                    ("DELETE adicionais WHERE id = ?; ");
+
+            removerQuarto.setInt(1, 1);
+
+            int linhaAfetada = removerQuarto.executeUpdate();
+            condb.close();
+            return linhaAfetada > 0;
+        }
+        catch (Exception erro) {
+            System.out.println("Erro ao deletar Quarto!" + erro);
+            return false;
         }
     }
 }

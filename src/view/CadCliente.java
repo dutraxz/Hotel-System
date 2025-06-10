@@ -2,6 +2,7 @@ package view; //Package View  (classe que, quando executadas, interagem com o us
 import javafx.application.Application; //Ciclo de vida da Aplicação (init(), start(), stop() --> launch())
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.application.Application;
 import javafx.scene.Scene; //Classe Scene
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

@@ -21,10 +21,27 @@ public class UsuariosDao {
 
 
             int linhaAfetada = novoUsuario.executeUpdate();
+            condb.close();
             return linhaAfetada > 0;
         }
         catch (Exception erro) {
             System.out.println("Erro ao inserir usuario " + erro);
+            return false;
+        }
+    }
+    public boolean deleteUsuario() {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement removerUsuario = condb.prepareStatement
+                    ("DELETE adicionais WHERE id = ?; ");
+            removerUsuario.setInt(1, 1);
+
+            int linhaAfetada = removerUsuario.executeUpdate();
+            condb.close();
+            return linhaAfetada > 0;
+        }
+        catch (Exception erro) {
+            System.out.println("Erro ao deletar Usuário!" + erro);
             return false;
         }
     }

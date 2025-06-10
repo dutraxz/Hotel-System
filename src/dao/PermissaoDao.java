@@ -18,10 +18,28 @@ public class PermissaoDao {
             novoPermissao.setString(1, "Cargo");
 
             int linhaAfetada = novoPermissao.executeUpdate();
+            condb.close();
             return linhaAfetada > 0;
         }
         catch (Exception erro){
             System.out.println("Erro ao inserir permissoes: " + erro);
+            return false;
+        }
+    }
+    public boolean deletePermissao() {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement removerPermissao = condb.prepareStatement
+                    ("DELETE adicionais WHERE id = ?; ");
+
+            removerPermissao.setInt(1, 1);
+
+            int linhaAfetada = removerPermissao.executeUpdate();
+            condb.close();
+            return linhaAfetada > 0;
+        }
+        catch (Exception erro) {
+            System.out.println("Erro ao deletar Permissão!" + erro);
             return false;
         }
     }
