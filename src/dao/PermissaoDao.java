@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class PermissaoDao {
     private Conexao conexao = new Conexao();
@@ -22,7 +23,7 @@ public class PermissaoDao {
             return linhaAfetada > 0;
         }
         catch (Exception erro){
-            System.out.println("Erro ao inserir permissoes: " + erro);
+            System.out.println("Erro ao inserir Permissao: " + erro);
             return false;
         }
     }
@@ -30,7 +31,7 @@ public class PermissaoDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement removerPermissao = condb.prepareStatement
-                    ("DELETE adicionais WHERE id = ?; ");
+                    ("DELETE permissao WHERE id = ?; ");
 
             removerPermissao.setInt(1, 1);
 
@@ -39,8 +40,42 @@ public class PermissaoDao {
             return linhaAfetada > 0;
         }
         catch (Exception erro) {
-            System.out.println("Erro ao deletar Permissão!" + erro);
+            System.out.println("Erro ao deletar Permissao! " + erro);
             return false;
+        }
+    }
+    public boolean atualizarPermissao() {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement alterarPermissao = condb.prepareStatement
+                    ("UPDATE permissao " + "SET = nome = ? ;" + "WHERE id = ? ;");
+
+            alterarPermissao.setString(1, "Gerente");
+
+            int linhhaAfetada = alterarPermissao.executeUpdate();
+            condb.close();
+            return linhhaAfetada > 0;
+        }
+        catch (Exception erro) {
+            System.out.println("Erro ao atualizar Permissao " + erro);
+            return false;
+        }
+    }
+    public void pesquisarPermissao() {
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement pesquisaPermissao = condb.prepareStatement("SELECT nome" + "FROM permissao WHERE id = ?; ");
+
+            pesquisaPermissao.setInt(1, 1);
+            ResultSet resultado = pesquisaPermissao.executeQuery();
+
+            while (resultado.next()) {
+                String nome = resultado.getString("nome");
+                System.out.println(nome + "nome");
+            }
+            condb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar Permissao!" + erro);
         }
     }
 }
