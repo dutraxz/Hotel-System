@@ -25,13 +25,13 @@ public class ClientesDao {
             int linhaAfetada = novoCliente.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao inserir usuario" + erro);
             return false;
         }
     }
-    public boolean deleteCliente    () {
+
+    public boolean deleteCliente() {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement removerClientes = condb.prepareStatement
@@ -42,12 +42,12 @@ public class ClientesDao {
             int linhaAfetada = removerClientes.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao deletar Cliente!" + erro);
             return false;
         }
     }
+
     public boolean atualizarClientes() {
         try {
             Connection condb = conexao.conectar();
@@ -62,12 +62,12 @@ public class ClientesDao {
             int linhaAfetada = alterarCliente.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao atualizar Cliente" + erro);
             return false;
         }
     }
+
     public void pesquisarQuartos() {
         try {
             Connection condb = conexao.conectar();
@@ -89,6 +89,7 @@ public class ClientesDao {
             condb.close();
         } catch (Exception erro) {
             System.out.println("Erro ao pesquisar Quartos!" + erro);
+        }
+    }
 }
-
 
