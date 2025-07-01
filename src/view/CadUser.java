@@ -30,9 +30,9 @@ public class CadUser extends Application {
             //- class objeto construtor
 
             Image ImgIcon = new Image(getClass().getResourceAsStream
-                    ("/view/resources/img/icon.funcionarioblue.png"));
+                    ("/view/resources/img/user.png"));
             Image ImgLogo = new Image(getClass().getResourceAsStream
-                    ("/img/Imglogo.png"));
+                    ("/img/iconNH.png"));
 
             //Criação de um container principal MainPane
             BorderPane mainPane = new BorderPane();

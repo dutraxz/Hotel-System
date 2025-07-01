@@ -32,7 +32,7 @@ public class Login extends Application {
 
         //Carregamento das Imagens
         Image ImgLogo = new Image(getClass().getResourceAsStream
-                ("/img/Imglogo.png"));
+                ("/img/iconNH.png"));
 
         //Configuração do layout principal
         BorderPane mainPane = new BorderPane();
@@ -167,7 +167,7 @@ public class Login extends Application {
         loginBox.setPadding(new Insets(10));
         loginBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);" + "-fx-border-color: #020268; -fx-border-width: 2px;" + "-fx-border-radius: 3px; -fx-background-radius: 10px");
         loginBox.setMaxWidth(300);
-        loginBox.setPadding(new Insets(20));
+        loginBox.setPadding(new Insets(10));
 
         //Layout com imagens de fundo
         StackPane root = new StackPane();

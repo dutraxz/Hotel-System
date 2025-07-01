@@ -1,6 +1,7 @@
 package dao;
 
 import util.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ public class QuartosDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement novoQuarto = condb.prepareStatement("INSERT INTO quartos " + " (nome, numero, camaSolteiro, camaCasal, " +
-                    "disponivel, preco)  VALUES (?, ?, ?, ?, ?, ?);");
+                    "disponivel, preco)  VALUES (?, ?, ?, ?, ?, ?) ;");
             //Setar os parametros
             novoQuarto.setString(1, "Victor");
             novoQuarto.setString(2, "2457");
@@ -35,9 +36,9 @@ public class QuartosDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement removerQuarto = condb.prepareStatement
-                    ("DELETE adicionais WHERE id = ?; ");
+                    ("DELETE FROM quartos WHERE id = ? ;");
 
-            removerQuarto.setInt(1, 1);
+            removerQuarto.setInt(1, 3       );
 
             int linhaAfetada = removerQuarto.executeUpdate();
             condb.close();
@@ -53,14 +54,16 @@ public class QuartosDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement alterarQuarto = condb.prepareStatement
-                    ("UPDATE pedidos " + "SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ?" + "WHERE id = ?;");
+                    ("UPDATE quartos " + "SET nome = ?, numero = ?, camaSolteiro = ?, camaCasal = ?, disponivel = ?, preco = ?" + " WHERE id = ? ;");
 
-            alterarQuarto.setString(1, "Quarto de Luxo 00");
+            alterarQuarto.setString(1, "Quarto de Luxo");
             alterarQuarto.setString(2, "100");
-            alterarQuarto.setInt(3, 2);
-            alterarQuarto.setInt(4, 4);
+            alterarQuarto.setInt(3, 20);
+            alterarQuarto.setInt(4, 40);
             alterarQuarto.setBoolean(5, false);
             alterarQuarto.setDouble(6, 800.00);
+            alterarQuarto.setInt(7, 4);
+
 
             int linhaAfetada = alterarQuarto.executeUpdate();
             condb.close();
@@ -74,7 +77,7 @@ public class QuartosDao {
     public void pesquisarQuartos() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement pesquisaQuarto = condb.prepareStatement("SELECT nome, numero, camaSolteiro, camaCasal, disponivel, preco " + "FROM quartos WHERE id = ?; ");
+            PreparedStatement pesquisaQuarto = condb.prepareStatement("SELECT nome, numero, camaSolteiro, camaCasal, disponivel, preco " + "FROM quartos WHERE id = ? ;");
 
             pesquisaQuarto.setInt(1, 1);
             ResultSet resultado = pesquisaQuarto.executeQuery();

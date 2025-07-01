@@ -1,4 +1,5 @@
 package view; //Package View  (classe que, quando executadas, interagem com o usuário
+
 import javafx.application.Application; //Ciclo de vida da Aplicação (init(), start(), stop() --> launch())
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,13 +21,13 @@ import view.componets.PainelBotoes;
 import view.componets.Sidebar;
 
 
-public class CadCliente  extends Application {
+public class CadCliente extends Application {
 
     public static void main(String[]
                                     args) {
         launch(args); //Inicializa o JavaFX
 
-}
+    }
 
     @Override
     public void start(Stage janela) throws Exception {
@@ -37,9 +38,9 @@ public class CadCliente  extends Application {
         //- class objeto construtor
 
         Image ImgIcon = new Image(getClass().getResourceAsStream
-                ("/view/resources/img/userr.png"));
+                ("/view/resources/img/icon.clienteblue.png"));
         Image ImgLogo = new Image(getClass().getResourceAsStream
-                ("/img/Imglogo.png"));
+                ("/img/iconNH.png"));
 
         //Criação de um container principal MainPane
         BorderPane mainPane = new BorderPane();
@@ -68,7 +69,7 @@ public class CadCliente  extends Application {
 
         HBox TituloBox = new HBox(lblTitulo, ImgUser);
         TituloBox.setSpacing(20); //Espaço
-        TituloBox.setPadding(new Insets (20,20,20,20)); //Espaçamento
+        TituloBox.setPadding(new Insets(20, 20, 20, 20)); //Espaçamento
         TituloBox.setAlignment(Pos.CENTER);
 
 
@@ -98,7 +99,6 @@ public class CadCliente  extends Application {
         boxEmail.setPromptText("Selecione");
 
 
-
         GridPane formGrid = new GridPane();
         formGrid.add(txtNome, 1, 0);
         formGrid.add(lblNome, 0, 0);
@@ -116,18 +116,17 @@ public class CadCliente  extends Application {
 
         formGrid.add(botoes, 1, 4);
 
-        formGrid.setPadding(new Insets(20,20,20,20));
+        formGrid.setPadding(new Insets(20, 20, 20, 20));
 
         formGrid.setAlignment(Pos.CENTER);//Centraliza os elementos
         formGrid.setVgap(10); // Espaço/Lacuna Vertical
         formGrid.setHgap(10); // Espaço/Lacuna Horizontal
 
-        VBox layout = new VBox(15,ImgUser,lblTitulo,formGrid); //Layout inteiro
+        VBox layout = new VBox(15, ImgUser, lblTitulo, formGrid); //Layout inteiro
         layout.setAlignment(Pos.CENTER);
         mainPane.setCenter(layout);
         //botao so de imagem
         //btnCadastrar.setGraphic(ImgIcon);
-
 
 
         Scene scene = new Scene(mainPane, 900, 800);
@@ -142,29 +141,27 @@ public class CadCliente  extends Application {
 
     //Metodo para criar um campo de texto com máscara
     private TextField criarMascaraCampo(String mascara) {
-            TextField txtMascara = new TextField();
-            txtMascara.textProperty().addListener((observable, oldValue, newValue) ->
-            {
-                String value = newValue.replaceAll("[^0-9]", "");
-                StringBuilder formatacaoCampo = new StringBuilder();
-                int index = 0;
-                for (char caracter : mascara.toCharArray()){
+        TextField txtMascara = new TextField();
+        txtMascara.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            String value = newValue.replaceAll("[^0-9]", "");
+            StringBuilder formatacaoCampo = new StringBuilder();
+            int index = 0;
+            for (char caracter : mascara.toCharArray()) {
                 if (caracter == '#') {
                     if (index < value.length()) {
                         formatacaoCampo.append(value.charAt(index));
                         index++;
-                    }
-                    else {
+                    } else {
                         break;
                     }
-                }
-                else {
+                } else {
                     formatacaoCampo.append(caracter);
-                    }
                 }
-                txtMascara.setText(formatacaoCampo.toString());
-            });
-            return txtMascara;
+            }
+            txtMascara.setText(formatacaoCampo.toString());
+        });
+        return txtMascara;
     }
     // the movie database
 }

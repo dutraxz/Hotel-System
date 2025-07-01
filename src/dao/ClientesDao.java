@@ -1,6 +1,7 @@
 package dao;
 
 import util.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,8 @@ public class ClientesDao {
 
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement novoCliente = condb.prepareStatement("INSERT INTO clientes " + " (nome, email, cpf, telefone) " +
-                    "VALUES (?, ?, ?, ?);");
+            PreparedStatement novoCliente = condb.prepareStatement("INSERT INTO clientes " + "(nome, email, cpf, telefone)" +
+                    "VALUES (?, ?, ?, ?) ;");
 
             //Setar os parametros
             novoCliente.setString(1, "Victor");
@@ -31,15 +32,15 @@ public class ClientesDao {
         }
     }
 
-    public boolean deleteCliente() {
+    public boolean deleteClientes() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement removerClientes = condb.prepareStatement
-                    ("DELETE adicionais WHERE id = ?; ");
+            PreparedStatement removerCliente = condb.prepareStatement
+                    ("DELETE FROM clientes WHERE id = ? ;");
 
-            removerClientes.setInt(1, 1);
+            removerCliente.setInt(1, 1);
 
-            int linhaAfetada = removerClientes.executeUpdate();
+            int linhaAfetada = removerCliente.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
         } catch (Exception erro) {
@@ -52,12 +53,13 @@ public class ClientesDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement alterarCliente = condb.prepareStatement
-                    ("UPDATE clientes " + "SET nome = ?, email = ?, cpf = ?, telefone = ? " + "WHERE id = ?; ");
+                    ("UPDATE clientes " + "SET nome = ?, email = ?, cpf = ?, telefone = ? " + "WHERE id = ? ;");
 
             alterarCliente.setString(1, "Desenvolvedor");
             alterarCliente.setString(2, "dev.backend@gmail.com");
             alterarCliente.setString(3, "123.123.123-00");
             alterarCliente.setString(4, "(15) 99000-0011");
+            alterarCliente.setInt(5, 5);
 
             int linhaAfetada = alterarCliente.executeUpdate();
             condb.close();
@@ -71,7 +73,7 @@ public class ClientesDao {
     public void pesquisarQuartos() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement pesquisaQuarto = condb.prepareStatement("SELECT nome, numero, camaSolteiro, camaCasal, disponivel, preco " + "FROM quartos WHERE id = ?; ");
+            PreparedStatement pesquisaQuarto = condb.prepareStatement("SELECT nome, numero, camaSolteiro, camaCasal, disponivel, preco " + "FROM quartos WHERE id = ? ;");
 
             pesquisaQuarto.setInt(1, 1);
             ResultSet resultado = pesquisaQuarto.executeQuery();

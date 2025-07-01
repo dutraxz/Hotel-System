@@ -16,11 +16,11 @@ public class PainelBotoes extends HBox {
 
         //Inserir imagem em container para manipilar tamanho/rendimensionamento
         Image iconBtnCadastrar = new Image(getClass().getResourceAsStream
-                ("/view/resources/img/add.png"));
+                ("/view/resources/img/icon.adicionarfunc.png"));
         Image iconBtnAtualizar = new Image(getClass().getResourceAsStream
-                ("/view/resources/img/att.png"));
+                ("/view/resources/img/icon.atualizar.png"));
         Image iconBtnExcluir = new Image(getClass().getResourceAsStream
-                ("/view/resources/img/dlt.png"));
+                ("/view/resources/img/icon.deletar.png"));
 
 
         ImageView icon1 = new ImageView(iconBtnCadastrar);

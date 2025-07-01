@@ -1,6 +1,7 @@
 package dao;
 
 import util.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,18 +14,17 @@ public class PedidosDao {
     public boolean inserirPedidos() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement novoPedido = condb.prepareStatement("INSERT INTO pedidos" + "(id_usuario_fk, id_cliente_fk, pagamento) VALUES (?, ?, ?);");
+            PreparedStatement novoPedido = condb.prepareStatement("INSERT INTO pedidos" + "(id_usuario_fk, id_cliente_fk, pagamento) VALUES (?, ?, ?) ;");
 
             //Setar os parametros
-            novoPedido.setInt(1, 4);
-            novoPedido.setInt(2, 1);
+            novoPedido.setInt(1, 11);
+            novoPedido.setInt(2, 5);
             novoPedido.setString(3, "Pix");
 
             int linhaAfetada = novoPedido.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao inserir Pedido " + erro);
             return false;
         }
@@ -34,15 +34,14 @@ public class PedidosDao {
     public boolean deletarPedidos() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement removerPedidos = condb.prepareStatement("DELETE pedidos WHERE id = ? ;");
+            PreparedStatement removerPedidos = condb.prepareStatement("DELETE FROM pedidos WHERE id = ? ;");
 
             removerPedidos.setInt(1, 1);
 
             int linhaAfetada = removerPedidos.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao deletar Pedido " + erro);
             return false;
         }
@@ -53,25 +52,26 @@ public class PedidosDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement alterarPedido = condb.prepareStatement
-                    ("UPDATE pedidos " + "SET id_usuario_fk = ? , id_cliente_fk = ? , pagamento = ? " + "WHERE id = ?;");
+                    ("UPDATE pedidos " + "SET id_usuario_fk = ? , id_cliente_fk = ? , pagamento = ? " + "WHERE id = ? ;");
 
-            alterarPedido.setInt(1, 4);
-            alterarPedido.setInt(2, 1);
+            alterarPedido.setInt(1, 11);
+            alterarPedido.setInt(2, 5);
             alterarPedido.setString(3, "Credito");
+            alterarPedido.setInt(4, 2);
 
             int linhaAfetada = alterarPedido.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao atualizar Pedido " + erro);
             return false;
         }
     }
+
     public void pesquisarPedidos() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement pesquisaPedido = condb.prepareStatement("SELECT id_usuario_fk, id_cliente_fk, pagamento " + "FROM pedidos WHERE id = ?");
+            PreparedStatement pesquisaPedido = condb.prepareStatement("SELECT id_usuario_fk, id_cliente_fk, pagamento " + "FROM pedidos WHERE id = ? ;");
 
             pesquisaPedido.setInt(1, 1);
             ResultSet resultado = pesquisaPedido.executeQuery();

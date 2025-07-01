@@ -29,7 +29,7 @@ public class CadQuarto extends Application {
         Image ImgIcon = new Image(getClass().getResourceAsStream
                 ("/view/resources/img/icon.quartoblue.png"));
         Image ImgLogo = new Image(getClass().getResourceAsStream
-                ("/img/Imglogo.png"));
+                ("/img/iconNH.png"));
 
         //Criação de um container principal MainPane
         BorderPane mainPane = new BorderPane();

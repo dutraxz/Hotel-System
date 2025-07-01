@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 public class Quartos {
     private int id, preco, qtd_cama_casal, qtd_cama_solteiro;

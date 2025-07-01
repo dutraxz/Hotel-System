@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 public class Cliente extends Pessoa {
     //Declaracao de uma variavel propria da class Cliente

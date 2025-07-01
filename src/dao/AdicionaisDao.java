@@ -1,6 +1,7 @@
 package dao;
 
 import util.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ public class AdicionaisDao {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement novoAdicional = condb.prepareStatement("INSERT INTO adicionais " + " (nome, preco) " +
-                    "VALUES (?, ?);");
+                    "VALUES (?, ?) ;");
 
             //Setar os parametros
             novoAdicional.setString(1, "Frigobar com bebidas");
@@ -28,46 +29,47 @@ public class AdicionaisDao {
             return false;
         }
     }
+
     public boolean deleteAdicionais() {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement removerAdicional = condb.prepareStatement
-                    ("DELETE adicionais WHERE id = ?; ");
+                    ("DELETE FROM adicionais WHERE id = ? ;");
 
             removerAdicional.setInt(1, 1);
 
             int linhaAfetada = removerAdicional.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao deletar Adicional!" + erro);
             return false;
         }
     }
+
     public boolean atualizarAdicionais() {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement alterarAdicional = condb.prepareStatement
-                ("UPDATE adicionais " + "SET nome = ?, preco = ? " + "WHERE id = ?; ");
+                    ("UPDATE adicionais " + "SET nome = ?, preco = ? " + "WHERE id = ? ;");
 
-            alterarAdicional.setString(1, "Chocolate");
+            alterarAdicional.setString(1, "Choc Amargo");
             alterarAdicional.setDouble(2, 50.00);
-            alterarAdicional.setInt(3, 1);
+            alterarAdicional.setInt(3, 4);
 
             int linhaAfetada = alterarAdicional.executeUpdate();
             condb.close();
             return linhaAfetada > 0;
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Erro ao atualizar Adicional!" + erro);
             return false;
         }
     }
+
     public void pesquisarAdicionais() {
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement pesquisaAdicional = condb.prepareStatement("SELECT nome, preco " + "FROM adicionais WHERE id = ?; ");
+            PreparedStatement pesquisaAdicional = condb.prepareStatement("SELECT nome, preco " + "FROM adicionais WHERE id = ? ;");
 
             pesquisaAdicional.setInt(1, 1);
             ResultSet resultado = pesquisaAdicional.executeQuery();

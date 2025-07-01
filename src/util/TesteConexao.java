@@ -1,16 +1,19 @@
 package util;
 
+import controller.UsuariosController;
 import dao.*;
-
 import java.sql.Connection;
 
 public class TesteConexao {
     public static void main(String[] args) {
         Conexao conexao = new Conexao();
+        UsuariosController usuariosController = new UsuariosController();
         Connection condb = conexao.conectar();
         if (condb != null) {
             System.out.println("Conexão estabelecida com sucesso!");
-            try{
+            try {
+
+                //Testando a autenticvação d eum usuário
 
                 //----- TESTE DE INSERT NO BANCO DE DADOS ------
 
@@ -43,15 +46,13 @@ public class TesteConexao {
 //                System.out.println("Reserva Inserido com suceeso!");
 
 
-
                 //----- TESTE DE DELETE NO BANCO DE DADOS ------
 
-
-
-//                ClientesDao clienDAO = new ClientesDao();
-//                clienDAO.deleteCliente();
-//                System.out.println("Cliente Deletado com suceeso!");
 //
+//                ClientesDao clienDAO = new ClientesDao();
+//                clienDAO.deleteClientes();
+//                System.out.println("Cliente Deletado com suceeso!");
+
 //                PermissaoDao permDAO = new PermissaoDao();
 //                permDAO.deletePermissao();
 //                System.out.println("Permissão Deletado com suceeso!");
@@ -63,7 +64,7 @@ public class TesteConexao {
 //                AdicionaisDao addDAO = new AdicionaisDao();
 //                addDAO.deleteAdicionais();
 //                System.out.println("Adicional Deletado com suceeso!");
-//
+
 //                UsuariosDao usuaDAO = new UsuariosDao();
 //                usuaDAO.deleteUsuario();
 //                System.out.println("Usuário Deletado com suceeso!");
@@ -71,7 +72,7 @@ public class TesteConexao {
 //                PedidosDao pediDAO = new PedidosDao();
 //                pediDAO.deletarPedidos();
 //                System.out.println("Pedido Deletado com suceeso!");
-//
+
 //                ReservasDao reserDAO = new ReservasDao();
 //                reserDAO.deleteReserva();
 //                System.out.println("Reserva Deletado com suceeso!");
@@ -81,55 +82,71 @@ public class TesteConexao {
                 //----- TESTE DE UPDATE NO BANCO DE DADOS -----
 
 
-
 //                ClientesDao clienDAO = new ClientesDao();
-//                clienDAO.deleteCliente();
+//                clienDAO.atualizarClientes();
 //                System.out.println("Cliente Atualizado com suceeso!");
 //
 //                PermissaoDao permDAO = new PermissaoDao();
-//                permDAO.deletePermissao();
+//                permDAO.atualizarPermissao();
 //                System.out.println("Permissão Atualizado com suceeso!");
 //
 //                QuartosDao quarDAO = new QuartosDao();
-//                quarDAO.deleteQuarto();
+//                quarDAO.atualizarQuartos();
 //                System.out.println("Quarto Atualizado com suceeso!");
 //
 //                AdicionaisDao addDAO = new AdicionaisDao();
-//                addDAO.deleteAdicionais();
+//                addDAO.atualizarAdicionais();
 //                System.out.println("Adicional Atualizado com suceeso!");
 //
 //                UsuariosDao usuaDAO = new UsuariosDao();
-//                usuaDAO.deleteUsuario();
-//                System.out.println("Usuário Atualizado com suceeso!");
-//
+//                usuaDAO.atualizarUsuario();
+//                System.out.println("Usuario Atualizado com suceeso!");
+
 //                PedidosDao pediDAO = new PedidosDao();
-//                pediDAO.deletarPedidos();
+//                pediDAO.atualizarPedidos();
 //                System.out.println("Pedido Atualizado com suceeso!");
 //
 //                ReservasDao reserDAO = new ReservasDao();
-//                reserDAO.deleteReserva();
+//                reserDAO.atualizarReservas();
 //                System.out.println("Reserva Atualizado com suceeso!");
-
 
 
                 //----- TESTE DE CONSULTA NO BANCO DE DADOS ------
 
 
+//                ClientesDao clienDAO = new ClientesDao();
+//                clienDAO.pesquisarQuartos();
+//                System.out.println("Cliente Consultado com suceeso!");
+//
+//                PermissaoDao permDAO = new PermissaoDao();
+//                permDAO.pesquisarPermissao();
+//                System.out.println("Permissão Consultada com suceeso!");
+
+//                QuartosDao quarDAO = new QuartosDao();
+//                quarDAO.pesquisarQuartos();
+//                System.out.println("Quarto Consultado com suceeso!");
+//
+//                AdicionaisDao addDAO = new AdicionaisDao();
+//                addDAO.pesquisarAdicionais();
+//                System.out.println("Adicional Consultada com suceeso!");
+//
+//                UsuariosDao usuaDAO = new UsuariosDao();
+//                usuaDAO.pesquisarUsuarios();
+//                System.out.println("Usuário Consultado com suceeso!");
+
+//                PedidosDao pediDAO = new PedidosDao();
+//                pediDAO.pesquisarPedidos();
+//                System.out.println("Pedido Consultado com suceeso!");
+//
+//                ReservasDao reserDAO = new ReservasDao();
+//                reserDAO.pesquisarReservas();
+//                System.out.println("Reserva Consultada com suceeso!");
 
 
-
-
-                AdicionaisDao attDAO = new AdicionaisDao();
-                attDAO.atualizarAdicionais();
-                System.out.println("Adicionais Atualizados  com suceeso!");
-
-
-
-
+                usuariosController.verificarCredenciais("Edu1503@hotmail.com", "2457");
                 condb.close();
                 System.out.println("Conexão encerrada");
-            }
-            catch (Exception erro) {
+            } catch (Exception erro) {
                 System.out.println("Erro ao encerrar a conexão:" + erro.getMessage());
             }
         } else {
