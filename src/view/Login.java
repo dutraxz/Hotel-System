@@ -1,5 +1,6 @@
 package view; //Package View  (classe que, quando executadas, interagem com o usuário
 
+import controller.UsuariosController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -94,7 +95,7 @@ public class Login extends Application {
 
 
         //senha visivel (inicialmente visivel)
-        TextField tfSenhaVisivel = new PasswordField();
+        TextField tfSenhaVisivel = new TextField();
         tfSenhaVisivel.setPromptText("Digite sua senha");
         tfSenhaVisivel.setVisible(false);
         tfSenhaVisivel.setManaged(false);
@@ -107,11 +108,11 @@ public class Login extends Application {
         //Botão  de mostrar ou ocultar o olho
         ImageView eyeOpen = new ImageView(new Image(getClass().getResourceAsStream("/img/icon.olho1.png")));
         ImageView eyeClosed = new ImageView(new Image(getClass().getResourceAsStream("/img/icon.olho1.png")));
-        eyeOpen.setFitWidth(50);
-        eyeOpen.setFitHeight(50);
+        eyeOpen.setFitWidth(30);
+        eyeOpen.setFitHeight(30);
 
-        eyeClosed.setFitWidth(50);
-        eyeClosed.setFitHeight(50);
+        eyeClosed.setFitWidth(30);
+        eyeClosed.setFitHeight(30);
 
         Button btnEye = new Button();
         btnEye.setGraphic(eyeClosed);
@@ -127,6 +128,7 @@ public class Login extends Application {
 
         });
 
+
         //Hbox contendo apenas o campo (visivel ou não) e o botão fora do campo
         StackPane senhaFieldPane = new StackPane(pfSenha, tfSenhaVisivel, btnEye);
         senhaFieldPane.setPrefWidth(100);
@@ -141,10 +143,26 @@ public class Login extends Application {
 
         //Botão de Login
         Button btnLogin = new Button("Entrar");
-        btnLogin.setStyle("-fx-background-color: #77777; -fx-text-fill: #4a1c1c; -fx-font-weight: bold; -fx-cursor: hand;");
-        btnLogin.setMaxWidth(300);
+        btnLogin.setStyle("-fx-background-color: #020268; -fx-text-fill: #4a1c1c; -fx-font-weight: bold; -fx-cursor: hand;");
+        btnLogin.setMaxWidth(100);
 //        btnLogin.setAlignment(Pos.CENTER_LEFT);
 
+        /*Usuario clica no botao login para se autenticar com os valores dos
+        campos txtNome e txtSenha (senha invisivel) || campoSenha(senha oculta) */
+
+        btnLogin.setOnAction(evento -> {
+            String usuario = txtUsername.getText();
+            String senha = tfSenhaVisivel.isVisible() ? tfSenhaVisivel.getText() : pfSenha.getText();
+
+            UsuariosController usuariosController = new UsuariosController();
+            boolean loginSucesso = usuariosController.verificarCredenciais(usuario, senha);
+            if (loginSucesso) {
+                System.out.println("Login com sucesso!");
+            }
+            else {
+                System.out.println("Login inválido, corriga suas informações!");
+            }
+        });
 
         //Mensagem de status
         Text txtStatus = new Text();
@@ -156,7 +174,7 @@ public class Login extends Application {
         loginGrid.add(txtEmail, 1, 0);
         loginGrid.add(lblSenha, 0, 1);
 
-        loginGrid.add(btnLogin, 1, 1);
+        loginGrid.add(btnLogin, 1, 2);
         loginGrid.add(txtStatus, 0, 2);
         loginGrid.add(senhaFieldPane, 1, 1);
 

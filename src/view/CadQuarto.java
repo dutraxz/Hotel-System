@@ -1,4 +1,5 @@
 package view; //Package View  (classe que, quando executadas, interagem com o usuário
+import controller.QuartosController;
 import javafx.application.Application; //Ciclo de vida da Aplicação (init(), start(), stop() --> launch())
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -84,8 +85,8 @@ public class CadQuarto extends Application {
 
         Label lblDisponivel = new Label("Disponiveis");
         lblDisponivel.setFont((Font.font(fonteNegrito.getFamily(), 13)));
-        TextField txtDisponivel= criarMascaraCampo("SIM");
-        txtDisponivel.setMaxWidth(100);
+        TextField txtdisponivel= criarMascaraCampo("SIM");
+        txtdisponivel.setMaxWidth(100);
 
         Label lblPreco = new Label("Preço");
         lblPreco.setFont((Font.font(fonteNegrito.getFamily(), 13)));
@@ -117,14 +118,40 @@ public class CadQuarto extends Application {
         formGrid.add(txtPreco, 1, 5);
         formGrid.add(lblPreco, 0, 5);
 
-
         formGrid.add(botoes,1, 6);
-
         formGrid.setPadding(new Insets(20,20,20,20));
-
         formGrid.setAlignment(Pos.CENTER);//Centraliza os elementos
         formGrid.setVgap(10); // Espaço/Lacuna Vertical
         formGrid.setHgap(10); // Espaço/Lacuna Horizontal
+
+       botoes.btnCadastro.setOnAction( evento -> {
+           String nome =  txtNome.getText();
+           String numero = txtNumero.getText();
+           double preco = Double.parseDouble(txtPreco.getText());
+           int qtd_cama_solteiro = spnSolteiro.getValue();
+           int qtd_cama_casal  = spnCasal.getValue();
+           //ComboBox da disponibilidade do quarto
+           String disponivel = (String) boxDisponivel.getSelectionModel().getSelectedItem();
+
+           boolean isDisponivel;
+           if (disponivel.equals("Disponivel")) {
+               isDisponivel = true;
+           } else {
+               isDisponivel = false;
+           }
+
+           QuartosController quartosController = new QuartosController();
+
+           boolean quartoinserido = quartosController.verificarInfosQuarto(nome, numero, preco,
+                   qtd_cama_solteiro, qtd_cama_casal, isDisponivel);
+
+           if (quartoinserido) {
+               System.out.println("Quarto cadastrado com sucesso!");
+           }else {
+               System.out.println("Não foi possivel cadastrar o quarto!");
+           }
+
+        });
 
         //botao so de imagem
         //btnCadastrar.setGraphic(ImgIcon);

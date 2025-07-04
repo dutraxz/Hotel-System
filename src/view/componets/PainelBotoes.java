@@ -8,9 +8,9 @@ import javafx.scene.layout.HBox;
 public class PainelBotoes extends HBox {
 
     //criação do objeto
-    Button btnCadastro = new Button("Cadastrar");
-    Button btnAtualizar = new Button("Atualizar");
-    Button btnExcluir = new Button("Excluir");
+    public Button btnCadastro = new Button("Cadastrar");
+    public Button btnAtualizar = new Button("Atualizar");
+    public Button btnExcluir = new Button("Excluir");
 
     public PainelBotoes() {
 

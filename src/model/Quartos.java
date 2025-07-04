@@ -1,11 +1,12 @@
 package model;
 
 public class Quartos {
-    private int id, preco, qtd_cama_casal, qtd_cama_solteiro;
+    private int id, qtd_cama_casal, qtd_cama_solteiro;
+    private double preco;
     private String nome, numero;
     private boolean disponivel;
 
-    public Quartos(String nome, String numero, int preco, int qtd_cama_casal, int qtd_cama_solteiro, boolean disponivel) {
+    public Quartos(String nome, String numero, double preco, int qtd_cama_casal, int qtd_cama_solteiro, boolean disponivel) {
         this.nome = nome;
         this.numero = numero;
         this.preco = preco;
@@ -14,11 +15,11 @@ public class Quartos {
         this.disponivel = disponivel;
     }
 
-    public int getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(int preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 

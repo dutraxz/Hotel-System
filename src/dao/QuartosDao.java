@@ -1,5 +1,6 @@
 package dao;
 
+import model.Quartos;
 import util.Conexao;
 
 import java.sql.Connection;
@@ -10,18 +11,18 @@ public class QuartosDao {
     //Conexão para instânciar classe para requisitar acesso ao banco de dados
     private Conexao conexao = new Conexao();
 
-    public boolean inserirQuartos(/*Quartos quartos*/) {
+    public boolean inserirQuartos(Quartos quartos) {
         try {
             Connection condb = conexao.conectar();
             PreparedStatement novoQuarto = condb.prepareStatement("INSERT INTO quartos " + " (nome, numero, camaSolteiro, camaCasal, " +
                     "disponivel, preco)  VALUES (?, ?, ?, ?, ?, ?) ;");
             //Setar os parametros
-            novoQuarto.setString(1, "Victor");
-            novoQuarto.setString(2, "2457");
-            novoQuarto.setInt(3, 30);
-            novoQuarto.setInt(4, 20);
-            novoQuarto.setBoolean(5, true);
-            novoQuarto.setDouble(6, 300.00);
+            novoQuarto.setString(1, quartos.getNome());
+            novoQuarto.setString(2, quartos.getNumero());
+            novoQuarto.setInt(3, quartos.getQtd_cama_solteiro());
+            novoQuarto.setInt(4, quartos.getQtd_cama_casal());
+            novoQuarto.setBoolean(5, quartos.isDisponivel());
+            novoQuarto.setDouble(6, quartos.getPreco());
 
             int linhaAfetada = novoQuarto.executeUpdate();
             condb.close();

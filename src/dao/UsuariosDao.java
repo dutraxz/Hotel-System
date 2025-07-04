@@ -11,7 +11,7 @@ public class UsuariosDao {
     //Conexão para instânciar classe para requisitar acesso ao DB
     private Conexao conexao = new Conexao();
 
-    public boolean inserirUsuario(/*Usuario usuario*/) {
+    public boolean inserirUsuario(User usuario) {
 
         try {
             Connection condb = conexao.conectar();
@@ -57,7 +57,7 @@ public class UsuariosDao {
 
             alterarUsuario.setString(1, "Eduardo");
             alterarUsuario.setString(2, "Edu1503@hotmail.com");
-            alterarUsuario.setString(3, "2457");
+            alterarUsuario.setString(3, " ");
             alterarUsuario.setInt(4, 11); //Altera usuarios com ID = 1
 
 
